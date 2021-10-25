@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- form Validation -->
+    <script type="text/javascript">
+        function validateForm() {
+            var fname = document.forms["employeeform"]["fname"].value;
+            var department = document.forms["employeeform"]["department"].value;
+            var title = document.forms["employeeform"]["title"].value;
+            var startdate = document.forms["employeeform"]["employmentdate"].value;
+            var worknumber = document.forms["employeeform"]["worknumber"].value;
+            var workemail = document.forms["employeeform"]["workemail"].value;
+            var pnumber = document.forms["employeeform"]["pnumber"].value;
+            var pemail = document.forms["employeeform"]["pemail"].value;
+            var address = document.forms["employeeform"]["address"].value;
+            if (fname == "") {
+                alert("Enter Employee name");
+                return false;
+            } else if (department == "") {
+                alert("Enter department");
+                return false;
+            } else if (title == "") {
+                alert("Enter title");
+                return false;
+            } else if (startdate == "") {
+                alert("Enter start date");
+                return false;
+            } else if (worknumber == "") {
+                alert("Enter work number");
+                return false;
+            } else if (workemail == "") {
+                alert("Enter work email");
+                return false;
+            } else if (pnumber == "") {
+                alert("Enter Mobile No.");
+                return false;
+            } else if (pemail == "") {
+                alert("Enter Personal Email");
+                return false;
+            } else if (address == "") {
+                alert("Enter Address");
+                return false;
+            } else if (!validateEmail(workemail)) {
+                alert("Enter Vaild WorkEmail");
+                return false;
+            } else if (!validateEmail(pemail)) {
+                alert("Enter Vaild Personal Email");
+                return false;
+            }
+
+            return (userconfirm());
+        }
+        function validateEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
+        function userconfirm() {
+            if (confirm('Are you sure details you entered are correct?')) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="formwrapper">
+            <div class="formtitle" style="border-bottom: 2px solid black;">
+                <h2 class="d-flex justify-content-center">Employee Information Form</h2>
+            </div>
+            <div class="employeeform m-auto" style="max-width: 70%;">
+                <form name="employeeform" onsubmit="return validateForm()" method="post" action="">
+                    <div class="form-group row mt-4">
+                        <div class="col">
+                            <label class="form-label">Employee Name:</label>
+                            <input required type="text" name="fname" class="form-control"
+                                placeholder="Enter Employee full Name" />
+                        </div>
+                    </div>
+                    <div class="fs-4 mt-3 mb-2" style="border-bottom: 1px solid black ;">
+                        Work Information
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label class="form-label">Department:</label>
+                            <input required type="text" name="department" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Title:</label>
+                            <input required type="text" name="title" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label class="form-label">Employment Date:</label>
+                            <input required type="date" name="employmentdate" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Work Contact:</label>
+                            <input required type="number" minlength="10" maxlength="10" name="worknumber"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label class="form-label">Work Email:</label>
+                            <input required type="email" name="workemail" class="form-control" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="fs-4 mt-3 mb-2" style="border-bottom: 1px solid black ;">
+                        Contact Information
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label class="form-label">Mobile No.:</label>
+                            <input required type="number" name="pnumber" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label class="form-label"> Email:</label>
+                            <input required type="email" name="pemail" class="form-control" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address:</label>
+                        <input required type="text" name="address" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="form-group m-4 d-flex justify-content-center">
+                        <button type="submit" name="submit" class="btn btn-primary btn-block">Submit Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- script -->
+
+
+</body>
+
+</html>
