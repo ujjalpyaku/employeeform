@@ -1,80 +1,26 @@
 import "./App.css";
-import { Form, Input, Button, Checkbox } from 'antd';
+import EmployeeForm from "./components/employeeform";
+import 'antd/dist/antd.css';
+import { Layout, Menu } from 'antd';
+import AboutUs from "./components/aboutus";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Navbar from "./components/navbar";
 
-const Demo = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
+const { Header, Content } = Layout;
+function App() {
   return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <div>
+      <Router>
+        <Navbar/>
+        <Switch>
+          <Route path="/" exact component={EmployeeForm}/>
+          <Route path="/aboutus" exact component={AboutUs}/>
+          <Route path="/employeeform" exact component={EmployeeForm}/>
+        </Switch>
+      </Router>
+    </div>
   );
-};
+}
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
